@@ -73,40 +73,53 @@ class PWorker(Worker):
 class EventBus():
 
 	def __init__(self, chairs):
+		self.chairs=chairs
 		self.c=CWorker()
 		self.f=FWorker()
 		self.b=BWorker()
 		self.s=SWorker()
 		self.p=PWorker()
 		self.events=Events()
-		self.events.needs_cut_seat+=c.execute
-		self.events.needs_feet+=f.execute
-		self.events.needs_backrest+=b.execute
-		self.events.needs_stabilizer_bar+=s.execute
-		self.events.needs_packaging+=p.execute
+		self.events.needs_cut_seat+=self.c.execute
+		self.events.needs_feet+=self.f.execute
+		self.events.needs_backrest+=self.b.execute
+		self.events.needs_stabilizer_bar+=self.s.execute
+		self.events.needs_packaging+=self.p.execute
 	
 	def needs_c(self, chair):
 		if not chair.has_cut_seat():
-			events.needs_cut_seat(chair)
+			self.events.needs_cut_seat(chair)
 
 	def needs_f(self, chair):
 		if not chair.has_feet():
-			events.needs_feet(chair)
+			self.events.needs_feet(chair)
 
 	def needs_b(self, chair):
 		if not chair.has_backrest():
-			events.needs_backrest(chair)
+			self.events.needs_backrest(chair)
 
 	def needs_s(self, chair):
 		if not chair.has_stabilizer_bar():
-			events.needs_stabilizer_bar(chair)
+			self.events.needs_stabilizer_bar(chair)
 
 	def needs_p(self, chair):
 		if not chair.has_packaging():
-			events.needs_packaging(chair)
+			self.events.needs_packaging(chair)
 
 	def start(self):
-		
+		while True:
+			for chair in self.chairs:
+				self.needs_c(chair)
+				self.needs_f(chair)
+				self.needs_b(chair)
+				self.needs_s(chair)
+				self.needs_p(chair)
+				if chair.is_done():
+					chairs.remove(chair)
+				if len(chairs)==0:
+					print ("all chairs are done!")
+					sys.exit()
+
 
 
 chairs=[]
@@ -114,12 +127,5 @@ chair1=chair_class.Chair("")
 chair2=chair_class.Chair("")
 chairs.append(chair1)
 chairs.append(chair2)
-
-def my_event(reason):
-	print (reason)
-
-
-events = Events()
-events.on_change+=my_event
-
-events.on_change("passc")
+eb=EventBus(chairs)
+eb.start()
