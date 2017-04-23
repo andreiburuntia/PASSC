@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ClassLibrary1
+{
+   public interface Interface1
+   {
+      void met();
+   }
+   public class Class1 : Interface1
+   {
+      public int number;
+      public bool boolean;
+      public string stringg;
+      private double dbl;
+      public void met()
+      {
+         throw new NotImplementedException();
+      }
+   }
+   public class Class2 : Class1
+   {
+      public int number2;
+   }
+}
