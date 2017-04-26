@@ -1,0 +1,66 @@
+ClassLibrary1.Interface1
+is interface
+--------------------
+
+
+--------------------
+ClassLibrary1.Class1
+is class
+is public
+
+implements the following interfaces:
+ClassLibrary1.Interface1
+extends System.Object
+
+has the following fields:
+number - System.Int32 - public
+boolean - System.Boolean - public
+stringg - System.String - public
+dbl - System.Double - private
+
+has the following constructors:
+.ctor - args:
+
+has the following methods:
+met - returns System.Void - args:
+ToString - returns System.String - args:
+Equals - returns System.Boolean - args:
+System.Object
+GetHashCode - returns System.Int32 - args:
+GetType - returns System.Type - args:
+Finalize - returns System.Void - args:
+MemberwiseClone - returns System.Object - args:
+--------------------
+
+
+--------------------
+ClassLibrary1.Class2
+is class
+is public
+
+implements the following interfaces:
+ClassLibrary1.Interface1
+extends ClassLibrary1.Class1
+
+has the following fields:
+number2 - System.Int32 - public
+number - System.Int32 - public
+boolean - System.Boolean - public
+stringg - System.String - public
+
+has the following constructors:
+.ctor - args:
+
+has the following methods:
+met - returns System.Void - args:
+ToString - returns System.String - args:
+Equals - returns System.Boolean - args:
+System.Object
+GetHashCode - returns System.Int32 - args:
+GetType - returns System.Type - args:
+Finalize - returns System.Void - args:
+MemberwiseClone - returns System.Object - args:
+--------------------
+
+
+--------------------
